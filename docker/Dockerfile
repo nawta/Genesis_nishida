@@ -115,4 +115,20 @@ COPY 10_nvidia.json /usr/share/glvnd/egl_vendor.d/10_nvidia.json
 COPY nvidia_icd.json /usr/share/vulkan/icd.d/nvidia_icd.json
 COPY nvidia_layers.json /etc/vulkan/implicit_layer.d/nvidia_layers.json
 
-ENTRYPOINT ["/bin/bash"]
+
+# --------------------- (Nishida added) --------------------------
+
+# Install VNC server and Xvfb
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    x11vnc \
+    xvfb \
+    fluxbox && \
+    apt-get clean && \
+    rm -rf /var/lib/apt/lists/*
+
+COPY start_vnc.sh /workspace/start_vnc.sh
+RUN chmod +x /workspace/start_vnc.sh
+
+
+# ENTRYPOINT ["/bin/bash"]
+ENTRYPOINT ["/workspace/start_vnc.sh"]
