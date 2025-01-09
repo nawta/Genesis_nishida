@@ -20,12 +20,15 @@ docker build -t genesis -f docker/Dockerfile docker
 
 コンテナを常駐させたい場合
 ```bash
-docker run -d --name genesis -p 5900:5900 genesis>
+docker run -d --name genesis -p 5900:5900 genesis
+
 ```
-バックグラウンド（デタッチ）起動
-exec bash で立ち上がったシェルは閉じられていませんが、TTYが無い状態でもプロセスは動き続ける
-必要に応じて `docker exec -it genesis bash` で再度ターミナルに入れる
-明示的に `docker stop genesis` するまで停止しない
+- バックグラウンド（デタッチ）起動  
+- exec bash で立ち上がったシェルは閉じられていませんが、TTYが無い状態でもプロセスは動き続ける  
+- 必要に応じて `docker exec -it genesis bash` で再度ターミナルに入れる  
+- 明示的に `docker stop genesis` するまで停止しない  
+- コンテナ起動時に --gpus all をつけないとコンテナ内でGPU使えないので注意
+- Dockerfileとかの最後にtail -f /dev/nullをつけて，永遠に終わらないプロセスにしてそれをビルド→バックグラウンド起動（run -d）→必要に応じてdocker exec -it <コンテナ名> bashでコンテナ内でターミナル操作を行うのが一般的な常駐型コンテナの扱い方
 
 
 ### イメージ
