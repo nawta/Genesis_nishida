@@ -20,7 +20,7 @@ docker build -t genesis -f docker/Dockerfile docker
 
 コンテナを常駐させたい場合
 ```bash
-docker run -d --name genesis -p 5900:5900 genesis
+docker run -d --name genesis --gpus all -p 5900:5900 -v $PWD:/workspace genesis
 
 ```
 - バックグラウンド（デタッチ）起動  
