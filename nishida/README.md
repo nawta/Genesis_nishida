@@ -26,3 +26,7 @@ docker run -d --name genesis -p 5900:5900 genesis>
 exec bash で立ち上がったシェルは閉じられていませんが、TTYが無い状態でもプロセスは動き続ける
 必要に応じて `docker exec -it genesis bash` で再度ターミナルに入れる
 明示的に `docker stop genesis` するまで停止しない
+
+
+### イメージ
+![IMG_0692](https://github.com/user-attachments/assets/d21dfb94-0fbe-460d-995c-f04fa4d9c5c8)
