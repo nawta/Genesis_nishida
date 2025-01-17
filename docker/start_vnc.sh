@@ -1,5 +1,6 @@
 #!/bin/bash
 
+# --- VNCサーバ関連をバックグラウンドで起動 ---
 # Set VNC password
 # mkdir -p ~/.vnc
 # x11vnc -storepasswd "yourpassword" ~/.vnc/passwd
@@ -14,4 +15,7 @@ export DISPLAY=:0
 fluxbox &
 
 # Start x11vnc server
-x11vnc -display :0 -forever -nopw
+x11vnc -display :0 -forever -nopw &
+
+# --- 最後にシェルを起動してターミナル操作可能にする ---
+tail -f /dev/null

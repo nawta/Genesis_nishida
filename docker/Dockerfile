@@ -126,9 +126,9 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
 
-COPY start_vnc.sh /workspace/start_vnc.sh
-RUN chmod +x /workspace/start_vnc.sh
+# start_vnc.sh を /usr/local/bin にコピー
+COPY start_vnc.sh /usr/local/bin/start_vnc.sh
+RUN chmod +x /usr/local/bin/start_vnc.sh
 
-
-# ENTRYPOINT ["/bin/bash"]
-ENTRYPOINT ["/workspace/start_vnc.sh"]
+# ENTRYPOINT をそちらに変更
+ENTRYPOINT ["/usr/local/bin/start_vnc.sh"]
