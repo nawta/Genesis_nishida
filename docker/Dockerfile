@@ -122,7 +122,8 @@ COPY nvidia_layers.json /etc/vulkan/implicit_layer.d/nvidia_layers.json
 RUN apt-get update && apt-get install -y --no-install-recommends \
     x11vnc \
     xvfb \
-    fluxbox && \
+    fluxbox \
+    emacs &&\
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
 
