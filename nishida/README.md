@@ -31,5 +31,11 @@ docker run -d --name genesis --gpus all -p 5900:5900 -v $PWD:/workspace genesis
 - Dockerfileとかの最後にtail -f /dev/nullをつけて，永遠に終わらないプロセスにしてそれをビルド→バックグラウンド起動（run -d）→必要に応じてdocker exec -it <コンテナ名> bashでコンテナ内でターミナル操作を行うのが一般的な常駐型コンテナの扱い方
 
 
+### Error handling
+```
+[ERROR] No display detected. Use `show_view=False' for headless mode.
+```
+→コンテナが多分一回停止して，`echo $DISPLAY`が通らない（コンテナが停止するごとに環境変数が消えてる模様）．コンテナ内で多分`export DISPLAY=:0`と押すと解決する．
+
 ### イメージ
 ![IMG_0692](https://github.com/user-attachments/assets/d21dfb94-0fbe-460d-995c-f04fa4d9c5c8)
